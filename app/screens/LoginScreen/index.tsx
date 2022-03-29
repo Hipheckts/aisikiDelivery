@@ -31,49 +31,29 @@ export default function LoginScreen({ navigation }: LoginProps) {
 
     const handleSubmit = async ({ phone, password }: UserCredentials) => {
 
-        navigation.navigate('Dashboard');
-        
-        // console.log(phone);
+        console.log(phone);
 
-        // const result: ApiResponse<any> = await loginApi.request(
-        //     phone,
-        //     password
-        // );
-        // console.log(result.status);
-        
-        // if (result.status === 200) {
-        //     setLoginFailed(false);
-        //     login(result.data);
+        try {
 
-        // } else {
-        //     setLoginFailed(true);
-        //     return;
-        // }
+            const result: ApiResponse<any> = await loginApi.request(
+                phone,
+                password
+            );
+            console.log(result);
+
+            if (result.status === 200) {
+                setLoginFailed(false);
+                login(result.data);
+
+            } else {
+                setLoginFailed(true);
+                return;
+            }
+        }
+        catch (error) {
+            setLoginFailed(true);
+        }
     }
-
-    // const handleSubmit = async ({ phone, password }: UserCredentials) => {
-
-    //     setLoading(true);
-
-    //     try {
-    //       const response = await axios.post(`${url.baseUrl}/login`, {
-    //         phone,
-    //         password
-    //       });
-
-    //       console.log(response.status);
-
-    //       if (response.status === 200) {
-    //         alert(` You have created: ${JSON.stringify(response.data)}`);
-    //         setLoginFailed(false);
-    //       } else {
-    //         throw new Error("An error has occurred");
-    //       }
-    //     } catch (error) {
-    //       alert("An error has occurred");
-    //       setLoginFailed(true);
-    //     }
-    // }
 
     return (
         <>
@@ -91,18 +71,18 @@ export default function LoginScreen({ navigation }: LoginProps) {
                         error="Invalid email and/or password"
                         visible={registerFailed}
                     /> */}
-  <ScrollView style={styles.container}>
+                    <ScrollView style={styles.container}>
                         <View style={{
                             margin: 10
                         }}></View>
 
-                <Image
-                    source={require('../../../assets/logo.png')}
-                    style={styles.logo}
-                />
-                <View style={{
-                    margin: 20
-                }}></View>
+                        <Image
+                            source={require('../../../assets/logo.png')}
+                            style={styles.logo}
+                        />
+                        <View style={{
+                            margin: 20
+                        }}></View>
                         <FormField
                             autoCapitalize="none"
                             autoCorrect={false}
@@ -134,8 +114,8 @@ export default function LoginScreen({ navigation }: LoginProps) {
                         margin: 20
                     }}></View>
                     <TouchableOpacity
-                        onPress={() => navigation.navigate('Register')}>
-                        <Text style={{ alignSelf: 'center' }}>Don't Have Account? Register</Text>
+                        onPress={() => navigation.navigate('ForgotPasswordScreen')}>
+                        <Text style={{ alignSelf: 'center' }}>Forgot Password?</Text>
                     </TouchableOpacity>
                 </Form>
             </KeyboardAvoidingView>

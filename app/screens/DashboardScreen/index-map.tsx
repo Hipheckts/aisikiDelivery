@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Image, Text, StatusBar, TextInput, TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView, Platform, FlatList, Pressable, Dimensions, TouchableOpacity } from 'react-native';
 
-import StoreProps from './model';
+import DashboardProps from './model';
 import styles from './styles';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
@@ -16,7 +16,7 @@ import Carousel from 'react-native-reanimated-carousel';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import useLocation from '../../hooks/useLocation';
 
-export default function Store({ navigation }: StoreProps) {
+export default function Dashboard({ navigation }: DashboardProps) {
   let { user, logout } = useAuthContext();
 
   const location = useLocation();
@@ -56,6 +56,7 @@ export default function Store({ navigation }: StoreProps) {
   return (
     <>
       <View>
+        <View style={styles.container}>
           <View style={styles.mapContainer}>
             {/* <MapView style={styles.map}/> */}
             <MapView style={styles.map}
@@ -68,7 +69,7 @@ export default function Store({ navigation }: StoreProps) {
               </Marker>
             </MapView>
           </View>
-          <View style={styles.container}>
+          <View style={styles.topContainer}>
             <View style={styles.row}>
               <View>
                 <Text style={styles.statusText} >You are Offline!</Text>
@@ -82,6 +83,7 @@ export default function Store({ navigation }: StoreProps) {
               </View>
             </View>
           </View>
+        </View>
       </View>
     </>
   );

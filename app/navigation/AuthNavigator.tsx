@@ -4,6 +4,7 @@ import Welcome from '../screens/Welcome';
 import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
 import DashboardScreen from '../screens/DashboardScreen';
+import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 import { StatusBar, View, Text } from 'react-native';
 import 'react-native-gesture-handler';
 
@@ -96,6 +97,29 @@ export default function AuthNavigator() {
                 headerBackTitleVisible: true,
                 headerTitleAlign: 'center',
                 headerBackTitle: 'Verification',
+                headerBackTitleStyle: {
+                    color: colors.black,
+                    fontWeight: 'bold',
+                    marginStart: 10
+                },
+                // headerTitleStyle: {
+                //     color: colors.white,
+                // },
+                // headerStyle: {
+                //     backgroundColor: colors.primary,
+                // }
+                headerTintColor: colors.black,
+                // headerLeft: () => (
+                //   <Icon name="back" />
+                // ),
+                }}/>
+          
+          <Stack.Screen name="ForgotPasswordScreen" component={ForgotPasswordScreen} options={{
+                headerShown: true,
+                title: '',
+                headerBackTitleVisible: true,
+                headerTitleAlign: 'center',
+                headerBackTitle: 'Forgot Password',
                 headerBackTitleStyle: {
                     color: colors.black,
                     fontWeight: 'bold',

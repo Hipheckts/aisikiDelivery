@@ -4,9 +4,14 @@ import BottomNav from './AppNavigator';
 import DashboardScreen from '../screens/DashboardScreen';
 import ViewProductScreen from '../screens/ViewProductScreen';
 import colors from '../config/colors';
-
-// import AccountScreen from '../screens/AccountScreen';
-// import MessagesScreen from '../screens/MessagesScreen';
+import Notifications from '../screens/More/Notifications';
+import Help from '../screens/More/Help';
+import Delivery from '../screens/More/Delivery';
+import Account from '../screens/More/Account';
+import Profile from '../screens/More/Profile';
+import Privacy from '../screens/More/Privacy';
+import Webview from '../screens/Webview';
+import Success from '../screens/Success';
 
 export type AccountNavigatorParamList = {
     Account: undefined;
@@ -23,16 +28,129 @@ export default function AccountNavigator() {
             <Stack.Screen component={ViewProductScreen} name="ViewProductScreen" options={{
                 headerShown: true, title: 'View Product',
                 headerBackTitle: 'Back', headerTitleAlign: 'center',
-                headerBackTitleStyle: {
-                    color: colors.white,
-                },
-                headerTintColor: colors.white,
-                headerTitleStyle: {
-                    color: colors.white,
-                },
-                headerStyle: {
-                    backgroundColor: colors.primary,
-                }
+                // headerBackTitleStyle: {
+                //     color: colors.white,
+                // },
+                // headerTintColor: colors.white,
+                // headerTitleStyle: {
+                //     color: colors.white,
+                // },
+                // headerStyle: {
+                //     backgroundColor: colors.primary,
+                // }
+            }} />
+
+            <Stack.Screen component={Webview} name="Webview" options={{
+                headerShown: true, title: 'Checkout',
+                headerBackTitle: 'Back', headerTitleAlign: 'center',
+                // headerBackTitleStyle: {
+                //     color: colors.white,
+                // },
+                // headerTintColor: colors.white,
+                // headerTitleStyle: {
+                //     color: colors.white,
+                // },
+                // headerStyle: {
+                //     backgroundColor: colors.primary,
+                // }
+            }} />
+
+            {/* More */}
+            <Stack.Screen component={Privacy} name="Privacy" options={{
+                headerShown: true, title: 'Privacy Policy',
+                headerBackTitle: 'Back', headerTitleAlign: 'center',
+                // headerBackTitleStyle: {
+                //     color: colors.white,
+                // },
+                // headerTintColor: colors.white,
+                // headerTitleStyle: {
+                //     color: colors.white,
+                // },
+                // headerStyle: {
+                //     backgroundColor: colors.primary,
+                // }
+            }} />
+            <Stack.Screen component={Help} name="Help" options={{
+                headerShown: true, title: 'Help',
+                headerBackTitle: 'Back', headerTitleAlign: 'center',
+                // headerBackTitleStyle: {
+                //     color: colors.white,
+                // },
+                // headerTintColor: colors.white,
+                // headerTitleStyle: {
+                //     color: colors.white,
+                // },
+                // headerStyle: {
+                //     backgroundColor: colors.primary,
+                // }
+            }} />
+            <Stack.Screen component={Notifications} name="Notifications" options={{
+                headerShown: true, title: 'Notifications',
+                headerBackTitle: 'Back', headerTitleAlign: 'center',
+                // headerBackTitleStyle: {
+                //     color: colors.white,
+                // },
+                // headerTintColor: colors.white,
+                // headerTitleStyle: {
+                //     color: colors.white,
+                // },
+                // headerStyle: {
+                //     backgroundColor: colors.primary,
+                // }
+            }} />
+            <Stack.Screen component={Delivery} name="Delivery" options={{
+                headerShown: true, title: 'Delivery Address',
+                headerBackTitle: 'Back', headerTitleAlign: 'center',
+                // headerBackTitleStyle: {
+                //     color: colors.white,
+                // },
+                // headerTintColor: colors.white,
+                // headerTitleStyle: {
+                //     color: colors.white,
+                // },
+                // headerStyle: {
+                //     backgroundColor: colors.primary,
+                // }
+            }} />
+            <Stack.Screen component={Account} name="Account" options={{
+                headerShown: true, title: 'Account',
+                headerBackTitle: 'Back', headerTitleAlign: 'center',
+                // headerBackTitleStyle: {
+                //     color: colors.white,
+                // },
+                // headerTintColor: colors.white,
+                // headerTitleStyle: {
+                //     color: colors.white,
+                // },
+                // headerStyle: {
+                //     backgroundColor: colors.primary,
+                // }
+            }} />
+            <Stack.Screen component={Profile} name="Profile" options={{
+                headerShown: true, title: 'Edit Profile',
+                headerBackTitle: 'Back', headerTitleAlign: 'center',
+                // headerBackTitleStyle: {
+                //     color: colors.white,
+                // },
+                // headerTintColor: colors.white,
+                // headerTitleStyle: {
+                //     color: colors.white,
+                // },
+                // headerStyle: {
+                //     backgroundColor: colors.primary,
+                // }
+            }} />
+            <Stack.Screen component={Success} name="Success" options={{
+                headerShown: false,
+                // headerShown: true, title: 'Store',
+                // headerBackTitle: 'Back', headerTitleAlign: 'center',
+                // headerTintColor: colors.white,
+                // headerTitleStyle: {
+                //     color: colors.white,
+                // },
+                // headerStyle: {
+                //     backgroundColor: colors.primary,
+                // }
             }} />
         </Stack.Navigator>
     );

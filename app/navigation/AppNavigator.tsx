@@ -1,5 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Image} from 'react-native';
+
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import * as Notifications from 'expo-notifications';
 
@@ -55,55 +57,59 @@ export default function AppNavigator() {
                 name="Home"
                 options={{
                     headerShown:false,
-                    tabBarIcon: ({ color, size }: TabBarIconProps) => (
-                        <MaterialCommunityIcons
-                            color={color}
-                            name="home"
-                            size={size}
-                        />
-                    )
+                    tabBarIcon: ({size,focused}) => {
+                        return (
+                          <Image
+                            style={{ width: size, height: size }}
+                            source={focused ? require('../../assets/nav/home_a.png') : require('../../assets/nav/home.png')}
+                          />
+                        );
+                    }
                 }}
             />
             <Tab.Screen
                 component={Store}
-                name="Store"
+                name="New"
                 options={{
-                    headerShown:false,
-                    tabBarIcon: ({ color, size }: TabBarIconProps) => (
-                        <MaterialCommunityIcons
-                            color={color}
-                            name="store"
-                            size={size}
-                        />
-                    )
+                    // headerShown:false,
+                    tabBarIcon: ({size,focused}) => {
+                        return (
+                          <Image
+                            style={{ width: size+10, height: size }}
+                            source={focused ? require('../../assets/nav/new_a.png') : require('../../assets/nav/new.png')}
+                          />
+                        );
+                    }
                 }}
             />
             <Tab.Screen
                 component={Orders}
-                name="Orders"
+                name="Ongoing"
                 options={{
                     // headerShown:false,
-                    tabBarIcon: ({ color, size }: TabBarIconProps) => (
-                        <MaterialCommunityIcons
-                            color={color}
-                            name="order-bool-ascending"
-                            size={size}
-                        />
-                    )
+                    tabBarIcon: ({size,focused}) => {
+                        return (
+                          <Image
+                            style={{ width: size+10, height: size }}
+                            source={focused ? require('../../assets/nav/ongoing_a.png') : require('../../assets/nav/ongoing.png')}
+                          />
+                        );
+                    }
                 }}
             />
             <Tab.Screen
                 component={Cart}
-                name="Cart"
+                name="Completed"
                 options={{
                     // headerShown:false,
-                    tabBarIcon: ({ color, size }: TabBarIconProps) => (
-                        <MaterialCommunityIcons
-                            color={color}
-                            name="cart"
-                            size={size}
-                        />
-                    )
+                    tabBarIcon: ({size,focused}) => {
+                        return (
+                          <Image
+                            style={{ width: size+10, height: size }}
+                            source={focused ? require('../../assets/nav/completed_a.png') : require('../../assets/nav/completed.png')}
+                          />
+                        );
+                    }
                 }}
             />
             <Tab.Screen
@@ -111,13 +117,14 @@ export default function AppNavigator() {
                 name="More"
                 options={{
                     // headerShown:false,
-                    tabBarIcon: ({ color, size }: TabBarIconProps) => (
-                        <MaterialCommunityIcons
-                            color={color}
-                            name="dots-horizontal"
-                            size={size}
-                        />
-                    )
+                    tabBarIcon: ({size,focused}) => {
+                        return (
+                          <Image
+                            style={{ width: size, height: size }}
+                            source={focused ? require('../../assets/nav/more_a.png') : require('../../assets/nav/more.png')}
+                          />
+                        );
+                    }
                 }}
             />
         </Tab.Navigator>

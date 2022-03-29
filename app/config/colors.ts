@@ -11,9 +11,12 @@ export default {
     mediumGray: '#6e6969',
     orange: '#fd9644',
     primary: '#0B6100',
+    // primary: '#0B2B40',
     purple: '#9f75e6',
     red: '#fc5c65',
+    lightBlue: '#E0F4DB',
     secondary: '#6BAF02',
+    // secondary: '#fed330',
     softBlue: '#4b7bec',
     white: '#fff',
     yellow: '#fed330'

@@ -35,21 +35,7 @@ export default function Offeringss({ navigation }: OfferingsProps) {
               backgroundColor={colors.primary}
             />
             <View style={styles.container}>
-              <Pressable onPress={()=>{}}>
-              <View style={styles.row}>
-                <Text style={styles.menu}>My Favorites</Text>
-                <MaterialCommunityIcons
-                      color={colors.primary}
-                      name="heart-outline"
-                      size={32}
-                      style={styles.menu_icon}
-                    />
-              </View>
-              </Pressable>
-              <View
-                style={styles.line}
-              />
-              <Pressable onPress={()=>{}}>
+              <Pressable onPress={()=>{navigation.navigate("Profile")}}>
               <View style={styles.row}>
                 <Text style={styles.menu}>Edit Profile</Text>
                 <MaterialCommunityIcons
@@ -63,7 +49,7 @@ export default function Offeringss({ navigation }: OfferingsProps) {
               <View
                 style={styles.line}
               />
-              <Pressable onPress={()=>{}}>
+              <Pressable onPress={()=>{navigation.navigate("Account")}}>
               <View style={styles.row}>
                 <Text style={styles.menu}>Account</Text>
                 <MaterialCommunityIcons
@@ -77,21 +63,7 @@ export default function Offeringss({ navigation }: OfferingsProps) {
               <View
                 style={styles.line}
               />
-              <Pressable onPress={()=>{}}>
-              <View style={styles.row}>
-                <Text style={styles.menu}>Loyalty</Text>
-                <MaterialCommunityIcons
-                      color={colors.primary}
-                      name="gift-outline"
-                      size={32}
-                      style={styles.menu_icon}
-                    />
-              </View>
-              </Pressable>
-              <View
-                style={styles.line}
-              />
-              <Pressable onPress={()=>{}}>
+              <Pressable onPress={()=>{navigation.navigate("Delivery")}}>
               <View style={styles.row}>
                 <Text style={styles.menu}>Delivery Address</Text>
                 <MaterialCommunityIcons
@@ -105,7 +77,7 @@ export default function Offeringss({ navigation }: OfferingsProps) {
               <View
                 style={styles.line}
               />
-              <Pressable onPress={()=>{}}>
+              <Pressable onPress={()=>{navigation.navigate("Notifications")}}>
               <View style={styles.row}>
                 <Text style={styles.menu}>Notifications</Text>
                 <MaterialCommunityIcons
@@ -119,7 +91,7 @@ export default function Offeringss({ navigation }: OfferingsProps) {
               <View
                 style={styles.line}
               />
-              <Pressable onPress={()=>{}}>
+              <Pressable onPress={()=>{navigation.navigate("Help")}}>
               <View style={styles.row}>
                 <Text style={styles.menu}>Help</Text>
                 <MaterialCommunityIcons
@@ -133,7 +105,7 @@ export default function Offeringss({ navigation }: OfferingsProps) {
               <View
                 style={styles.line}
               />
-              <Pressable onPress={()=>{}}>
+              <Pressable onPress={()=>{navigation.navigate("Privacy")}}>
               <View style={styles.row}>
                 <Text style={styles.menu}>Privacy Policy</Text>
                 <MaterialCommunityIcons

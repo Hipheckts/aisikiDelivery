@@ -1,45 +1,56 @@
 import { Dimensions, StyleSheet, Platform } from 'react-native';
 import colors from '../../config/colors';
 
-const numColumns = 2;
+
+const numColumns = 3;
 const size = Dimensions.get('window').width / numColumns - 25
+
 const styles = StyleSheet.create({
     container: {
+        // flex: 1,
+        position: 'absolute',
+        height: Dimensions.get('window').height * 0.09,
+        width: Dimensions.get('window').width,
         backgroundColor: colors.white,
+        padding: 10
     },
     margin: {
         marginTop: 50
     },
-    productsContainer: {
-        margin: 5,
+    row: {
+        marginTop: 15,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center'
     },
-    itemContainer: {
-        width: size,
-        height: size,
-        backgroundColor: colors.white,
-        shadowColor: '#171717',
-        shadowOffset: { width: 3, height: 0 },
-        shadowOpacity: 0.1,
-        shadowRadius: 10,
-        margin: 10,
+    statusText: {
+        fontSize: 18,
+        fontWeight: '500',
+        color: colors.black
+    },
+    button: {
+        height: 30,
+        borderRadius: 20,
         padding: 10,
-        borderRadius: 15
+        alignItems: 'center', //  x axis
+        justifyContent: 'center', // y axis
     },
-    item: {
-        margin: 5,
-        fontWeight: 'bold',
-        textTransform: 'uppercase',
-        fontSize: 12,
-        color: colors.primary
-    },
-    price: {
-        marginLeft: 5,
+    buttonText: {
+        fontFamily:'Custom-Font-Bold',
+        color: colors.white,
         fontSize: 12
     },
-    productImg: {
-        width: size,
-        height: size * 0.7
-    }
+    mapContainer: {
+        // flex: 1,
+        // backgroundColor: '#fff',
+        // alignItems: 'center',
+        // justifyContent: 'center',
+      },
+      map: {
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height * 0.9,
+        // marginTop: Dimensions.get('window').height * 0.15
+      },
 });
 
 export default styles;

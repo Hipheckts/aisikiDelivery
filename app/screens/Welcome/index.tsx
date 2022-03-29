@@ -34,7 +34,7 @@ export default function Welcome({ navigation }: WelcomeProps) {
        
        <TouchableOpacity
             style={[{ backgroundColor: colors.secondary }, styles.button]}
-            onPress={()=> navigation.navigate('Register')}>
+            onPress={()=> navigation.navigate('Login')}>
             <Text style={styles.buttonText}>Continue</Text>
         </TouchableOpacity>
         <View style={styles.vSpace}/>

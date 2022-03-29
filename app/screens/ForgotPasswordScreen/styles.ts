@@ -5,14 +5,8 @@ const styles = StyleSheet.create({
     container: {
         padding: 10
     },
-    row: {
-      marginLeft: 10,
-      marginRight: 10,
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-  },
     logo: {
-        width: 80,
+        width: 50,
         height: 80,
         alignSelf: 'center',
         marginTop: 20
@@ -23,19 +17,19 @@ const styles = StyleSheet.create({
         marginBottom: 30,
         textTransform: 'capitalize',
         fontSize: 20,
-        // textAlign:"center"
-    },
-    subtitle:{
-      fontSize: 18,
+        textAlign:"center"
     },
     text:{
         fontFamily:'Custom-Font',
         margin:0,
         padding:0
     },
+    subtitle:{
+        fontSize: 16,
+        textAlign:"center"
+      },
 
-
-    centeredView: {
+      centeredView: {
         justifyContent: 'center',
         alignItems: 'center',
         position: 'absolute',
