@@ -2,9 +2,27 @@
 import axios from 'axios';
 import url from '../config/url';
 
-export const getProducts = async (limit: string,offset: string) => {
+export const getDeliveries = async (limit: string,offset: string) => {
   try {
-    const response = await axios.get(`${url.baseUrl}/products?limit=${limit}&offset=${offset}`)
+    const response = await axios.get(`${url.baseUrl}/orders?limit=${limit}&offset=${offset}`)
+    return response.data;
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+export const getIncompletedDeliveries = async (limit: string,offset: string) => {
+  try {
+    const response = await axios.get(`${url.baseUrl}/inccomplete?limit=${limit}&offset=${offset}`)
+    return response.data;
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+export const getCompletedDeliveries = async (limit: string,offset: string) => {
+  try {
+    const response = await axios.get(`${url.baseUrl}/completed?limit=${limit}&offset=${offset}`)
     return response.data;
   } catch (e) {
     console.log(e);

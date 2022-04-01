@@ -6,9 +6,9 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import * as Notifications from 'expo-notifications';
 
 import Dashboard from '../screens/DashboardScreen';
-import Orders from '../screens/OrdersScreen';
-import Cart from '../screens/CartScreen';
-import Store from '../screens/StoreScreen';
+import Ongoing from '../screens/OngoingScreen';
+import Completed from '../screens/CompletedScreen';
+import New from '../screens/NewScreen';
 import More from '../screens/MoreScreen';
 import NewListingButton from './NewListingButton';
 // import useNotifications from '../hooks/useNotifications';
@@ -68,10 +68,11 @@ export default function AppNavigator() {
                 }}
             />
             <Tab.Screen
-                component={Store}
+                component={New}
                 name="New"
                 options={{
                     // headerShown:false,
+                    // title: 'New Deliveries',
                     tabBarIcon: ({size,focused}) => {
                         return (
                           <Image
@@ -83,10 +84,11 @@ export default function AppNavigator() {
                 }}
             />
             <Tab.Screen
-                component={Orders}
+                component={Ongoing}
                 name="Ongoing"
                 options={{
                     // headerShown:false,
+                    // title: 'Ongoing Deliveries',
                     tabBarIcon: ({size,focused}) => {
                         return (
                           <Image
@@ -98,10 +100,11 @@ export default function AppNavigator() {
                 }}
             />
             <Tab.Screen
-                component={Cart}
+                component={Completed}
                 name="Completed"
                 options={{
                     // headerShown:false,
+                    // title: 'Completed Deliveries',
                     tabBarIcon: ({size,focused}) => {
                         return (
                           <Image

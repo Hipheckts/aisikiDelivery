@@ -19,6 +19,7 @@ export default function Dashboard({ navigation }: DashboardProps) {
   let { user, logout } = useAuthContext();
   let [deliveriesList, setDeliveriesList] = useState(Array());
   let [walletBalance, setWalletBalance] = useState(0);
+  let [loading, setLoading] = useState(false);
   const [period, setPeriod] = useState('today');
 
   let [fontsLoaded] = useFonts({
@@ -27,11 +28,13 @@ export default function Dashboard({ navigation }: DashboardProps) {
   });
 
   let fetchDeliveries = async () => {
-    // setLoading(true);
-    const deliveriesData = await getDeliveries();
+    setLoading(true);
+    const deliveriesData = await getDeliveries("80","0");
     setDeliveriesList(deliveriesData);
     console.log(deliveriesData);
-    // setLoading(false);
+    if(deliveriesData.length != 0){
+    setLoading(false);
+    }
   };
 
   let fetchBalance = async () => {
@@ -41,7 +44,7 @@ export default function Dashboard({ navigation }: DashboardProps) {
   };
 
   useEffect(() => {
-    // fetchDeliveries();
+    fetchDeliveries();
     // fetchBalance();
   }, []);
 
@@ -52,11 +55,6 @@ export default function Dashboard({ navigation }: DashboardProps) {
 
   return (
     <>
-      {/* <KeyboardAvoidingView
-        style={{ flex: 1 }}
-        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-        keyboardVerticalOffset={Platform.OS === 'ios' ? 40 : 0}> */}
-      {/* <TouchableWithoutFeedback onPress={Keyboard.dismiss}> */}
       <View>
         <StatusBar
           backgroundColor={colors.primary}
@@ -141,34 +139,32 @@ export default function Dashboard({ navigation }: DashboardProps) {
               </View>
               <View style={styles.row}>
                 <Text style={{ margin: 20, fontWeight: 'bold' }}>New Deliveries</Text>
-                <Pressable onPress={() => navigation.navigate('Deliveries')}>
+                <Pressable onPress={() => navigation.navigate('New')}>
                   <Text style={{ margin: 20, color: colors.grey }}>See All</Text>
                 </Pressable>
               </View>
-              {deliveriesList.length != 0 ?
+              {!loading ?
                 <FlatList
                   data={deliveriesList}
                   renderItem={({ item }) => (
-                    <Pressable onPress={() => navigation.navigate("ViewDeliveriesScreen", { delivery: item })} >
+                    <Pressable onPress={() => navigation.navigate("ViewDeliveryScreen", { delivery: item })} >
                       <View style={styles.vendorCard}>
-                        <View>
-                          <Image
-                            source={{ uri: "https://techcrunch.com/wp-content/uploads/2021/03/maizemanphone.jpg" }}
-                            style={styles.vendorImg}
-                          />
-                        </View>
+                        
+                      <Image
+                          source={require('../../../assets/courier.png')}
+                          style={styles.vendorImg}
+                        />
                         <View style={styles.vendorDetails}>
-                          <Text style={styles.vendorName}>{item.name}</Text>
+                          <Text style={styles.vendorName}>{item.customer}</Text>
                           <Text style={styles.vendorEmail}>{item.email}</Text>
-                          <Text style={styles.vendorBranch}>Branch Number: BN{item.id}</Text>
-                          <Text style={styles.vendorLocation}>
+                          <Text numberOfLines={1} style={styles.vendorLocation}>
                             <MaterialCommunityIcons
                               color={colors.primary}
                               name="map-marker-outline"
                               size={20}
                               style={styles.menu_icon}
                             />
-                            Benin City
+                            {item.delivery_address}
                           </Text>
                         </View>
                       </View>
@@ -189,8 +185,6 @@ export default function Dashboard({ navigation }: DashboardProps) {
           </View>
         </View>
       </View>
-      {/* </TouchableWithoutFeedback>
-      </KeyboardAvoidingView> */}
     </>
   );
 }

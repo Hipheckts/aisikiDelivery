@@ -18,16 +18,18 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.aisiki.delivery",
+      "bundleIdentifier": "com.aisiki.aisikideliveryapp",
       "config": {
         "googleMapsApiKey": "AIzaSyDWijmMYqAgaaHeyYynqLoSaHpqRna_kOc"
       }
     },
     "android": {
+      "versionCode": 12,
       "adaptiveIcon": {
         "foregroundImage": "./app/assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.aisiki.aisikideliveryapp"
     },
     "web": {
       "favicon": "./app/assets/favicon.png"

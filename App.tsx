@@ -21,7 +21,7 @@ LogBox.ignoreLogs([
 
 export default function App() {
 
-  console.disableYellowBox = true;
+  LogBox.ignoreAllLogs(true);
 
   const [user, setUser] = useState(null);
   const [isReady, setIsReady] = useState(false);

@@ -231,7 +231,7 @@ const styles = StyleSheet.create({
         borderBottomLeftRadius: 15
     },
     vendorDetails:{
-        width:'100%',
+        width:'65%',
         padding: 10
     },
     vendorName:{

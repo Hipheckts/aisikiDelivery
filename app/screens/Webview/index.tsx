@@ -6,7 +6,7 @@ import WebView from 'react-native-webview';
 import AppText from '../../components/AppText';
 import url from '../../config/url';
 import useApi from '../../hooks/useApi';
-import styles from '../ViewProductScreen/styles';
+import styles from '../ViewDeliveryScreen/styles';
 import api from './api';
 import WebviewProps from './model';
 

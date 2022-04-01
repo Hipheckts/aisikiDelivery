@@ -2,7 +2,7 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import BottomNav from './AppNavigator';
 import DashboardScreen from '../screens/DashboardScreen';
-import ViewProductScreen from '../screens/ViewProductScreen';
+import ViewDeliveryScreen from '../screens/ViewDeliveryScreen';
 import colors from '../config/colors';
 import Notifications from '../screens/More/Notifications';
 import Help from '../screens/More/Help';
@@ -25,8 +25,8 @@ export default function AccountNavigator() {
         <Stack.Navigator>
             <Stack.Screen name="BottomNav" component={BottomNav} options={{ headerShown: false }} />
             <Stack.Screen component={DashboardScreen} name="DashboardScreen" />
-            <Stack.Screen component={ViewProductScreen} name="ViewProductScreen" options={{
-                headerShown: true, title: 'View Product',
+            <Stack.Screen component={ViewDeliveryScreen} name="ViewDeliveryScreen" options={{
+                headerShown: true, title: 'View Delivery',
                 headerBackTitle: 'Back', headerTitleAlign: 'center',
                 // headerBackTitleStyle: {
                 //     color: colors.white,

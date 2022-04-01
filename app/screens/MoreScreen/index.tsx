@@ -35,12 +35,12 @@ export default function Offeringss({ navigation }: OfferingsProps) {
               backgroundColor={colors.primary}
             />
             <View style={styles.container}>
-              <Pressable onPress={()=>{navigation.navigate("Profile")}}>
+              <Pressable onPress={()=>{navigation.navigate("Account")}}>
               <View style={styles.row}>
-                <Text style={styles.menu}>Edit Profile</Text>
+                <Text style={styles.menu}>Account</Text>
                 <MaterialCommunityIcons
                       color={colors.primary}
-                      name="pencil-outline"
+                      name="account-outline"
                       size={32}
                       style={styles.menu_icon}
                     />
@@ -49,12 +49,12 @@ export default function Offeringss({ navigation }: OfferingsProps) {
               <View
                 style={styles.line}
               />
-              <Pressable onPress={()=>{navigation.navigate("Account")}}>
+              <Pressable onPress={()=>{navigation.navigate("Profile")}}>
               <View style={styles.row}>
-                <Text style={styles.menu}>Account</Text>
+                <Text style={styles.menu}>Edit Profile</Text>
                 <MaterialCommunityIcons
                       color={colors.primary}
-                      name="account-outline"
+                      name="pencil-outline"
                       size={32}
                       style={styles.menu_icon}
                     />
