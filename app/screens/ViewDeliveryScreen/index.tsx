@@ -28,13 +28,13 @@ export default function ViewDelivery({ route, navigation }: ViewDeliveryProps) {
 
   const [mapRegion, setmapRegion] = useState({
     latitude: delivery.lat,
-    longitude: delivery.long,
+    longitude: delivery.lng,
     latitudeDelta: 2.0222,
     longitudeDelta: 1.4121,
     });
   
   const scheme = Platform.select({ ios: 'maps:0,0?q=', android: 'geo:0,0?q=' });
-  const latLng = `${delivery.lat},${delivery.long}`;
+  const latLng = `${delivery.lat},${delivery.lng}`;
   const label = `${delivery.customer}`;
   const url : any = Platform.select({
     ios: `${scheme}${label}@${latLng}`,
