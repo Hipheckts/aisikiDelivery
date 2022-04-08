@@ -55,14 +55,46 @@ export default function LoginScreen({ navigation }: LoginProps) {
     //     }
     // }
 
+    // const handleSubmit = async ({ phone, password }: UserCredentials) => {
+
+    //     setLoading(true);
+
+    //     try {
+    //       const response = await axios.post(`${url.baseUrl}/login`, {
+    //         phone,
+    //         password
+    //       });
+
+    //     //   console.log(response.status);
+
+    //       if (response.status === 200) {
+    //         // alert(` You have created: ${JSON.stringify(response.data)}`);
+    //         login(response.data);
+    //         setLoginFailed(false);
+    //         setLoading(false);
+    //       } else {
+    //         setLoginFailed(true);
+    //         setLoading(false);
+    //         throw new Error("An error has occurred");
+    //       }
+    //     } catch (error) {
+    //     //   alert("An error has occurred");
+    //         setLoginFailed(true);
+    //         setLoading(false);
+    //     }
+    // }
+
     const handleSubmit = async ({ phone, password }: UserCredentials) => {
 
         setLoading(true);
 
+        let origin = "DELIVERYAPP";
+
         try {
           const response = await axios.post(`${url.baseUrl}/login`, {
             phone,
-            password
+            password,
+            origin
           });
 
         //   console.log(response.status);
