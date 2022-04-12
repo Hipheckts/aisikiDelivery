@@ -21,35 +21,65 @@ import colors from '../../config/colors';
 
 export default function OTPScreen({ route, navigation }: OTPProps) {
     let { user, logout } = useAuthContext();
+    const otpApi = useApi(authApi.otp);
     const verifyApi = useApi(authApi.verify);
     const [verifyFailed, setVerifyFailed] = useState(false);
     const [loading, setLoading] = useState(false);
     const { login } = useAuthContext();
     const [modalVisible, setModalVisible] = useState(false);
+    const [resend, setResend] = useState(false);
 
     const { phone } = route.params;
 
-    const handleSubmit = async (pin: any) => {
+    const sendOtp = async () => {
+        let res = await otpApi.request(phone);
+        console.log(res.data);
+    }
 
-        setModalVisible(!modalVisible);
+    React.useEffect(() => {
+        const unsubscribe = navigation.addListener('focus', () => {
+          sendOtp();
+        });
+    
+        return unsubscribe;
+      }, [navigation]);
+    
 
-        // console.log(pin);
+    const handleSubmit = async (otpObject: any) => {
 
-        // const result: ApiResponse<any> = await verifyApi.request(
-        //     phone,
-        //     pin
-        // );
-        // console.log(result.status);
+        setLoading(true);
 
-        // if (result.status === 200) {
-        //     setVerifyFailed(false);
-        //     setModalVisible(!modalVisible);
-        //     // login(result.data);
+        const otp = otpObject.otp
 
-        // } else {
-        //     setVerifyFailed(true);
-        //     return;
-        // }
+        try {
+        const result: ApiResponse<any> = await verifyApi.request(
+            phone,
+            otp
+        );
+
+            // const result = await axios.post(`${url.baseUrl}/otpverify`, {
+            //     "phone" : phone.phone,
+            //     "otp" : otpObject.otp
+            // });
+
+            console.log(result.status);
+
+            if (result.status === 200) {
+                setLoading(false);
+                setVerifyFailed(false);
+                setModalVisible(!modalVisible);
+                // login(result.data);
+
+            } else {
+                setLoading(false);
+                setVerifyFailed(true);
+                return;
+            }
+        } catch (error) {
+            console.log(error);
+            setLoading(false);
+            setVerifyFailed(false);
+        }
     }
 
     return (
@@ -116,10 +146,17 @@ export default function OTPScreen({ route, navigation }: OTPProps) {
                     </ScrollView>
                     <View style={styles.row}>
                         <Text style={styles.subtitle}>0:20 min</Text>
-                        <TouchableOpacity
-                            onPress={() => navigation.navigate('Login')}>
-                            <Text style={{ color: colors.secondary, fontSize: 18 }}>RESEND</Text>
-                        </TouchableOpacity>
+                        { !resend ? 
+                    <TouchableOpacity
+                        onPress={async () => {
+                            setResend(true);
+                            sendOtp();
+                        }}>
+                        <Text style={{ color: colors.secondary, fontSize: 18 }}>RESEND</Text>
+                    </TouchableOpacity>
+                    : 
+                    <Text style={{ color: colors.red, fontSize: 18 }}>SENT!</Text>
+                    }
                     </View>
                     <SubmitButton title="Verify" />
                     <View style={{

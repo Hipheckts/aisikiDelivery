@@ -10,7 +10,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import colors from '../../config/colors';
 import { ScrollView } from 'react-native-gesture-handler';
 
-import { getBalance, getDeliveries } from '../../services/requests';
+import { getDeliveryMetrics, getDeliveries } from '../../services/requests';
 import NumberFormat from 'react-number-format';
 import Carousel from 'react-native-reanimated-carousel';
 import url from '../../config/url';
@@ -20,6 +20,7 @@ export default function Dashboard({ navigation }: DashboardProps) {
   let [deliveriesList, setDeliveriesList] = useState(Array());
   let [walletBalance, setWalletBalance] = useState(0);
   let [loading, setLoading] = useState(false);
+  let [metricsData, setMetrics] = useState(Array());
   const [period, setPeriod] = useState('today');
 
   let [fontsLoaded] = useFonts({
@@ -42,15 +43,83 @@ export default function Dashboard({ navigation }: DashboardProps) {
     setWalletBalance(walletBalance['balance']);
     console.log(walletBalance['balance']);
   };
+  
 
-  useEffect(() => {
-    fetchDeliveries();
-    // fetchBalance();
-  }, []);
+  let getMetrics = async () => {
+    const metrics = await getDeliveryMetrics();
+    setMetrics(metrics);
+    console.log(metrics);
+  };
 
 
-  if (!fontsLoaded) {
-    return <AppLoading />;
+  React.useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      fetchDeliveries();
+      getMetrics();
+    });
+
+    return unsubscribe;
+  }, [navigation]);
+
+
+ 
+  if (metricsData.length == 0) {
+    return(
+      <View>
+        <StatusBar
+          backgroundColor={colors.primary}
+        />
+        <View style={styles.container}>
+          <View style={styles.topContainer}>
+            <View style={styles.navRow}>
+              <View>
+                <Text style={styles.welcomeText} >Hello {user.name}!</Text>
+                <Text style={styles.findText} >How are you today?</Text>
+              </View>
+              <View>
+                <MaterialCommunityIcons
+                  color={colors.white}
+                  name="bell-outline"
+                  size={25}
+                  onPress={() => navigation.navigate('Notifications')}
+                />
+              </View>
+            </View>
+            <View style={{ marginLeft: 10 }}>
+              <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+                <Pressable
+                  onPress={() => {
+                    setPeriod('today');
+                  }}
+                >
+                  <View style={period == 'today' ? styles.periodActive : styles.period}>
+                    <Text style={styles.periodTitle}>Today</Text>
+                  </View>
+                </Pressable>
+                <Pressable
+                  onPress={() => {
+                    setPeriod('week');
+                  }}
+                >
+                  <View style={period == 'week' ? styles.periodActive : styles.period}>
+                    <Text style={styles.periodTitle}>This Week</Text>
+                  </View>
+                </Pressable>
+                <Pressable
+                  onPress={() => {
+                    setPeriod('month');
+                  }}
+                >
+                  <View style={period == 'month' ? styles.periodActive : styles.period}>
+                    <Text style={styles.periodTitle}>This Month</Text>
+                  </View>
+                </Pressable>
+              </ScrollView>
+            </View>
+            </View>
+            </View>
+            </View>
+    );
   }
 
   return (
@@ -113,21 +182,21 @@ export default function Dashboard({ navigation }: DashboardProps) {
             </View>
             <View style={styles.row}>
               <View style={styles.bizCard}>
-                <Text style={styles.bizCardTitle}>{period == 'today' ? 3 : period == 'week' ? 10 : 50}</Text>
+                <Text style={styles.bizCardTitle}>{period == 'today' ? metricsData['today'][0]['number_of_orders'] : period == 'week' ? metricsData['weekly'][0]['number_of_orders'] : metricsData['monthly'][0]['number_of_orders']}</Text>
                 <Text style={styles.bizCardSubtitle}>Total Orders</Text>
               </View>
               <View style={styles.bizCard2}>
-                <Text style={styles.salesCardTitle}>{period == 'today' ? 30 : period == 'week' ? 100 : 500}</Text>
+                <Text style={styles.salesCardTitle}>{period == 'today' ? metricsData['today'][0]['number_of_completed_orders'] : period == 'week' ? metricsData['weekly'][0]['number_of_completed_orders'] : metricsData['monthly'][0]['number_of_completed_orders']}</Text>
                 <Text style={styles.salesCardSubtitle}>Complete Orders</Text>
               </View>
             </View>
             <View style={styles.row}>
               <View style={styles.salesCard}>
-                <Text style={styles.salesCardTitle}>{period == 'today' ? 3 : period == 'week' ? 16 : 31}</Text>
+                <Text style={styles.salesCardTitle}>{period == 'today' ? metricsData['today'][0]['number_of_incomplete_orders'] : period == 'week' ? metricsData['weekly'][0]['number_of_incomplete_orders'] : metricsData['monthly'][0]['number_of_incomplete_orders']}</Text>
                 <Text style={styles.salesCardSubtitle}>Pending</Text>
               </View>
               <View style={styles.salesCard2}>
-                <Text style={styles.salesCardTitle}>{url.currencySymbol}{period == 'today' ? 300.9 : period == 'week' ? 1600.00 : 3100.00}</Text>
+                <Text style={styles.salesCardTitle}>{url.currencySymbol}{period == 'today' ? metricsData['today'][0]['amount_of_money_to_collect'] : period == 'week' ?  metricsData['weekly'][0]['amount_of_money_to_collect'] :  metricsData['monthly'][0]['amount_of_money_to_collect']}</Text>
                 <Text style={styles.salesCardSubtitle}>Cash Payments</Text>
               </View>
             </View>

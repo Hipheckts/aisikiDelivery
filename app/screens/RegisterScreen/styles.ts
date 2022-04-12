@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
         width: 50,
         height: 80,
         alignSelf: 'center',
-        marginTop: 20
+        marginTop: 10
     },
     title: {
         fontFamily:'Custom-Font-Bold',

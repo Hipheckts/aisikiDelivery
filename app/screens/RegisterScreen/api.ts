@@ -4,31 +4,27 @@ import url from '../../config/url';
 
 
 const register = (
-    name: string,
+    first_name: string,
     phone: string,
-    referral_code: string,
+    email: string,
     password: string,
-    latitude: string,
-    longitude: string,
-    business_category: number,
-    number_of_offices: number,
-    logo: string,
-    is_corporate: true,
-    contact_person: string,
-    login: string) =>
+    last_name: string,
+    referral_code: string,
+    toc: boolean,
+    city: string,
+    origin: string) =>
     axios.post(`${url.baseUrl}/register`, {
-        name,
+        first_name,
         phone,
-        referral_code,
+        email,
         password,
-        latitude,
-        longitude,
-        business_category,
-        number_of_offices,
-        logo,
-        is_corporate,
-        contact_person,
-        login
+        last_name,
+        referral_code,
+        toc,
+        city,
+        origin
     });
 
-export default { register };
+const otp = ( phone: any) =>axios.get(`${url.baseUrl}/otp/${phone}`);
+
+export default { register, otp };

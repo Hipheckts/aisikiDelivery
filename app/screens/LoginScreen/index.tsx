@@ -176,6 +176,13 @@ export default function LoginScreen({ navigation }: LoginProps) {
                         margin: 20
                     }}></View>
                     <TouchableOpacity
+                        onPress={() => navigation.navigate('Register')}>
+                        <Text style={{ alignSelf: 'center', color: colors.primary }}>REGISTER</Text>
+                    </TouchableOpacity>
+                    <View style={{
+                        margin: 30
+                    }}></View>
+                    <TouchableOpacity
                         onPress={() => navigation.navigate('ForgotPasswordScreen')}>
                         <Text style={{ alignSelf: 'center' }}>Forgot Password?</Text>
                     </TouchableOpacity>

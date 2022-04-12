@@ -2,6 +2,15 @@
 import axios from 'axios';
 import url from '../config/url';
 
+export const getProfile = async () => {
+  try {
+    const response = await axios.get(`${url.baseUrl}/profile`)
+    return response.data;
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 export const getDeliveries = async (limit: string,offset: string) => {
   try {
     const response = await axios.get(`${url.baseUrl}/orders?limit=${limit}&offset=${offset}`)
@@ -37,6 +46,17 @@ export const getCartItems = async () => {
     console.log(e);
   }
 }
+
+
+
+export const getDeliveryMetrics = async () => {
+  try {
+    const response = await axios.get(`${url.baseUrl}/metrics`)
+    return response.data;
+  } catch (e) {
+    console.log(e);
+  }
+} 
 
 // export const getCoinMarketChart = async (coinId, selectedRange) => {
 //   try {
