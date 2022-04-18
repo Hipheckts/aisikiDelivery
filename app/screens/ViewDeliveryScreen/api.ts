@@ -2,8 +2,12 @@ import axios from 'axios';
 import url from '../../config/url';
 
 
-const endTrip = (delivery: string) =>
-    axios.patch(`${url.baseUrl}/delivered/${delivery}`);
+const startTrip = (delivery: string) =>
+    axios.patch(`${url.baseUrl}/started/${delivery}`);
 
 
-export default { endTrip };
+    const endTrip = (delivery: string) =>
+        axios.patch(`${url.baseUrl}/delivered/${delivery}`);
+
+
+export default { startTrip, endTrip };

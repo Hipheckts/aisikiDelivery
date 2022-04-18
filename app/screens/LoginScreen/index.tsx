@@ -22,11 +22,13 @@ import url from '../../config/url';
 import axios from 'axios';
 import AppNavigator from '../../navigation/AppNavigator';
 import { useAuthContext } from '../../auth/context';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default function LoginScreen({ navigation }: LoginProps) {
     const loginApi = useApi(authApi.login);
     const [loginFailed, setLoginFailed] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [obscure, setObscure] = useState(true);
     const { login } = useAuthContext();
 
     // const handleSubmit = async ({ phone, password }: UserCredentials) => {
@@ -157,15 +159,32 @@ export default function LoginScreen({ navigation }: LoginProps) {
                             margin: 5
                         }}>
                         </View>
+                    <View style={{flexDirection: 'row'}}>
                         <FormField
                             autoCapitalize="none"
                             autoCorrect={false}
                             icon="lock"
                             name="password"
-                            placeholder="Password"
-                            secureTextEntry
+                            placeholder="Enter Password"
+                            secureTextEntry =  {obscure ? true : false }
                             textContentType="password"
                         />
+                        <TouchableOpacity
+                        onPress={()=>{setObscure(!obscure)}}
+                        >
+                        <MaterialCommunityIcons
+                            color={colors.mediumGray}
+                            name= {obscure ? 'eye-off' : 'eye' }
+                            size={20}
+                            style={{
+                                marginRight: 10,
+                                position: 'absolute',
+                                marginTop: 30,
+                                flexDirection: 'row',
+                                right: 0}}
+                        />
+                        </TouchableOpacity>
+                    </View>
                         <View style={{
                             margin: 40
                         }}></View>

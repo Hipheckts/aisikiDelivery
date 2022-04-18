@@ -34,9 +34,14 @@ export default function Completed({ navigation }: CompletedProps) {
     }
   };
 
-  useEffect(() => {
-    fetchDeliveries();
-  }, []);
+  
+  React.useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      fetchDeliveries();
+    });
+
+    return unsubscribe;
+  }, [navigation]);
 
 
   // if (!deliveriesList) {

@@ -63,7 +63,7 @@ export default function Dashboard({ navigation }: DashboardProps) {
 
 
  
-  if (metricsData.length == 0) {
+  if (metricsData.length == 0 || metricsData == null) {
     return(
       <View>
         <StatusBar

@@ -23,11 +23,13 @@ import url from '../../config/url';
 import axios from 'axios';
 import colors from '../../config/colors';
 import DropDownPicker from 'react-native-dropdown-picker';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default function RegisterScreen({ navigation }: RegisterProps) {
     const registerApi = useApi(authApi.register);
     const [registerFailed, setregisterFailed] = useState(false);
     const [error, setError] = useState("");
+    const [obscure, setObscure] = useState(true);
 
     const location = useLocation();
 
@@ -216,15 +218,32 @@ export default function RegisterScreen({ navigation }: RegisterProps) {
                             margin: 5
                         }}>
                         </View>
+                    <View style={{flexDirection: 'row'}}>
                         <FormField
                             autoCapitalize="none"
                             autoCorrect={false}
                             icon="lock"
                             name="password"
-                            placeholder="Password"
-                            secureTextEntry
+                            placeholder="Enter Password"
+                            secureTextEntry =  {obscure ? true : false }
                             textContentType="password"
                         />
+                        <TouchableOpacity
+                        onPress={()=>{setObscure(!obscure)}}
+                        >
+                        <MaterialCommunityIcons
+                            color={colors.mediumGray}
+                            name= {obscure ? 'eye-off' : 'eye' }
+                            size={20}
+                            style={{
+                                marginRight: 10,
+                                position: 'absolute',
+                                marginTop: 30,
+                                flexDirection: 'row',
+                                right: 0}}
+                        />
+                        </TouchableOpacity>
+                    </View>
 
                     </ScrollView>
                     <SubmitButton title="Register" />

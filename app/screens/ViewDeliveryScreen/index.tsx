@@ -17,6 +17,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default function ViewDelivery({ route, navigation }: ViewDeliveryProps) {
   const endTripApi = useApi(api.endTrip);
+  const startTripApi = useApi(api.startTrip);
   const [loading, setLoading] = useState(false);
   const [started, setStarted] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
@@ -42,6 +43,19 @@ export default function ViewDelivery({ route, navigation }: ViewDeliveryProps) {
   });
 
   console.log(delivery);
+
+  const startTrip = async () => {
+    const result: ApiResponse<any> = await startTripApi.request(delivery.id);
+    if (result.status === 200) {
+      console.log(result.data);
+      setLoading(false);
+      Linking.openURL(url);
+      setStarted(true);
+    } else {
+      setLoading(false);
+      return;
+    }
+  }
 
   const endTrip = async () => {
     const result: ApiResponse<any> = await endTripApi.request(delivery.id);
@@ -152,8 +166,7 @@ export default function ViewDelivery({ route, navigation }: ViewDeliveryProps) {
                 }} />
               </View> :
               <AppButton title={"Start Trip"} onPress={() =>{
-                setStarted(true);
-                Linking.openURL(url);
+                startTrip();
               }} />
               }
             </View>

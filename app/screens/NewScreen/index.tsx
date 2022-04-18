@@ -33,9 +33,14 @@ export default function Store({ navigation }: StoreProps) {
     }
   };
 
-  useEffect(() => {
-    fetchDeliveries();
-  }, []);
+ 
+  React.useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      fetchDeliveries();
+    });
+
+    return unsubscribe;
+  }, [navigation]);
 
 
   // if (!deliveriesList) {
