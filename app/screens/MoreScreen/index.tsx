@@ -60,7 +60,7 @@ export default function Offeringss({ navigation }: OfferingsProps) {
                     />
               </View>
               </Pressable>
-              <View
+              {/* <View
                 style={styles.line}
               />
               <Pressable onPress={()=>{navigation.navigate("Delivery")}}>
@@ -73,7 +73,7 @@ export default function Offeringss({ navigation }: OfferingsProps) {
                       style={styles.menu_icon}
                     />
               </View>
-              </Pressable>
+              </Pressable> */}
               <View
                 style={styles.line}
               />
