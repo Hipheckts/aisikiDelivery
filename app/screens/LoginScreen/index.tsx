@@ -101,8 +101,8 @@ export default function LoginScreen({ navigation }: LoginProps) {
 
         //   console.log(response.status);
 
-          if (response.status === 200) {
-            // alert(` You have created: ${JSON.stringify(response.data)}`);
+        // if (response.status === 200) {
+        if (response.data['session_id'] != null) {
             login(response.data);
             setLoginFailed(false);
             setLoading(false);

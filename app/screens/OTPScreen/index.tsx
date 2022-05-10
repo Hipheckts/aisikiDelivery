@@ -159,6 +159,10 @@ export default function OTPScreen({ route, navigation }: OTPProps) {
                     }
                     </View>
                     <SubmitButton title="Verify" />
+                <View style={{
+                        margin: 10
+                    }}></View>
+                <Text style={{ alignSelf: 'center', color: colors.primary }}>Not Getting OTP? Please call +2347062010189 for manual verification.</Text>
                     <View style={{
                         margin: 20
                     }}></View>

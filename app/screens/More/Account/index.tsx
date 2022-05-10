@@ -10,12 +10,15 @@ import styles from './styles';
 import AccountProps from './model';
 import colors from '../../../config/colors';
 import { Form, FormField } from '../../../components/forms';
+import useLocation from '../../../hooks/useLocation';
 
 export default function Account({ route, navigation }: AccountProps) {
 
   const { user, logout } = useAuthContext();
   const [loading, setLoading] = useState(false);
   let [profileData, setProfileData] = useState(null);
+
+  const location = useLocation();
 
   let [fontsLoaded] = useFonts({
     'Custom-Font': require('../../../assets/fonts/GTWalsheimPro-Regular.ttf'),
@@ -45,7 +48,7 @@ export default function Account({ route, navigation }: AccountProps) {
         {profileData != null ?
           <>
             <Form
-              initialValues={{ name: profileData.name, phone: profileData.phone, street: `${profileData.street}`,number_of_offices: profileData.number_of_offices, contact_person: profileData.contact_person, latitude: `${profileData.latitude}`, longitude: `${profileData.longitude}`, referral_code: profileData.referral_code, }}
+              initialValues={{ name: profileData.name, phone: profileData.phone, street: `${profileData.street}`,number_of_offices: profileData.number_of_offices, contact_person: profileData.contact_person, latitude: `${location.latitude}`, longitude: `${location.longitude}`, referral_code: profileData.referral_code != "null" ? profileData.referral_code : "", }}
             >
               <Text style={styles.text}>Name</Text>
               <FormField
@@ -69,7 +72,7 @@ export default function Account({ route, navigation }: AccountProps) {
                 margin: 5
               }}>
               </View>
-              <Text style={styles.text}>Number of Offices</Text>
+              {/* <Text style={styles.text}>Number of Offices</Text>
               <FormField
                 editable={false}
                 name="number_of_offices"
@@ -100,7 +103,7 @@ export default function Account({ route, navigation }: AccountProps) {
               <View style={{
                 margin: 5
               }}>
-              </View>
+              </View> */}
               <Text style={styles.text}>Longitude</Text>
               <FormField
                 editable={false}

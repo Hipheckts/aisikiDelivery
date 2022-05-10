@@ -33,7 +33,7 @@ export default function Help() {
           <Text style={styles.title}>Email</Text>
           <Text style={styles.text}>info@aisiki.co</Text>
           <Text style={styles.title}>Phone</Text>
-          <Text style={styles.text}>+234 801 234 5678</Text>
+          <Text style={styles.text}>+234 70 6201 0189</Text>
           <Text style={styles.title}>Chat with us</Text>
           <Text style={styles.text}>
             <MaterialCommunityIcons
@@ -41,7 +41,7 @@ export default function Help() {
               name="whatsapp"
               size={22}
             />
-            +234 801 234 5678
+            +234 70 6201 0189
           </Text>
         </View>
       </KeyboardAvoidingView>

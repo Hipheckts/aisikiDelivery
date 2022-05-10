@@ -28,7 +28,10 @@ export default function Notifications() {
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         keyboardVerticalOffset={Platform.OS === 'ios' ? 40 : 0}>
         <View style={styles.container}>
-          <View style={styles.row}>
+          <View style={{justifyContent: 'center', alignItems: 'center', marginVertical: 200}}>
+            <Text style={styles.title}>No Notifications!</Text>
+          </View>
+          {/* <View style={styles.row}>
             <View>
               <Text style={styles.title}>New Message from Admin</Text>
               <Text style={styles.text}>For suggestions, complaints and enquiries kindly
@@ -59,7 +62,7 @@ export default function Notifications() {
           </View>
           <View
             style={styles.line}
-          />
+          /> */}
         </View>
       </KeyboardAvoidingView>
     </ScrollView>

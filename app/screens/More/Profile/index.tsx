@@ -145,7 +145,7 @@ export default function Profile({ route, navigation }: AccountProps) {
                 margin: 5
               }}>
               </View>
-              <Text style={styles.text}>Street</Text>
+              {/* <Text style={styles.text}>Street</Text>
               <FormField
                 name="street"
                 placeholder="Street"
@@ -155,7 +155,7 @@ export default function Profile({ route, navigation }: AccountProps) {
                 margin: 5
               }}>
               </View>
-              {/* <Text style={styles.text}>Number of Offices</Text>
+              <Text style={styles.text}>Number of Offices</Text>
               <FormField
                 name="number_of_offices"
                 placeholder="Number of Offices"

@@ -66,7 +66,8 @@ export default function RegisterScreen({ navigation }: RegisterProps) {
             // location.longitude,
         );
         console.log(result.data);
-        if (result.status === 200) {
+        // if (result.status === 200) {
+        if (result.data['phone'] != null) {
             setregisterFailed(false);
             // await otpApi.request(phone);
             // console.log(result.data);
