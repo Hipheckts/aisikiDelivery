@@ -125,6 +125,11 @@ const styles = StyleSheet.create({
         color: colors.secondary,
         fontWeight: '600'
     },
+    vendorDate:{
+        fontSize: 14,
+        color: colors.grey,
+        marginTop: 10
+    },
     vendorEmail:{
         fontSize: 14,
         color: colors.secondary,

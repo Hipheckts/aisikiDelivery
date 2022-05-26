@@ -254,6 +254,11 @@ const styles = StyleSheet.create({
         color: colors.grey,
         marginTop: 20
     },
+    vendorDate:{
+        fontSize: 14,
+        color: colors.grey,
+        marginTop: 10
+    },
     menu_icon:{
         color: colors.secondary
     },

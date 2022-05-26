@@ -83,23 +83,41 @@ const styles = StyleSheet.create({
       },
       button: {
         borderRadius: 20,
-        padding: 10,
+        // height: 41,
+        alignItems: 'center',
+        padding: 18,
         elevation: 2,
       },
       buttonOpen: {
         backgroundColor: '#F194FF',
       },
       buttonClose: {
-        backgroundColor: colors.red,
+        backgroundColor: colors.primary,
+        marginTop: 10
       },
       textStyle: {
         color: 'white',
         fontWeight: 'bold',
         textAlign: 'center',
+        fontSize: 16
       },
       modalText: {
         marginBottom: 15,
         textAlign: 'center',
+        fontSize: 20
+      },
+      modalAmount: {
+        marginBottom: 15,
+        textAlign: 'center',
+        fontWeight: 'bold',
+        fontSize: 30,
+        color: colors.red
+      },
+      statusText: {
+        marginBottom: 15,
+        textAlign: 'center',
+        fontSize: 20,
+        textTransform: 'uppercase'
       },
 
     map: {

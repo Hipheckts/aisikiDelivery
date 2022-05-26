@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Image, Text, StatusBar, TextInput, TouchableWithoutFeedback, Keyboard, KeyboardAvoidingView, Platform, Pressable, Modal, Linking, FlatList } from 'react-native';
 
 import ViewDeliveryProps from './model';
 import styles from './styles';
 import colors from '../../config/colors';
-import { ScrollView } from 'react-native-gesture-handler';
+import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import AppButton from '../../components/AppButton';
 import ActivityIndicator from '../../components/ActivityIndicator';
 import useApi from '../../hooks/useApi';
@@ -20,6 +20,7 @@ export default function ViewDelivery({ route, navigation }: ViewDeliveryProps) {
   const startTripApi = useApi(api.startTrip);
   const [loading, setLoading] = useState(false);
   const [started, setStarted] = useState(false);
+  const [completed, setCompleted] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const location = useLocation();
   let [latitude, setLatitude] = useState(location.latitude);
@@ -58,16 +59,34 @@ export default function ViewDelivery({ route, navigation }: ViewDeliveryProps) {
   }
 
   const endTrip = async () => {
+    setModalVisible(!modalVisible);
+    setLoading(true);
     const result: ApiResponse<any> = await endTripApi.request(delivery.id);
     if (result.status === 200) {
       console.log(result.data);
       setLoading(false);
-      setModalVisible(!modalVisible);
+      navigation.navigate('Completed');
     } else {
       setLoading(false);
       return;
     }
   }
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      if(delivery.delivery_status == 'in_transit'){
+        setStarted(true);
+      }
+
+      if(delivery.delivery_status == 'completed'){
+        setCompleted(true);
+      }
+
+    });
+
+    return unsubscribe;
+  }, [navigation]);
+
 
 
   return (
@@ -88,14 +107,25 @@ export default function ViewDelivery({ route, navigation }: ViewDeliveryProps) {
             <View style={styles.modalView}>
               <Text style={styles.modalText}>Great Job!</Text>
               <Text style={styles.modalText}>Package Successfully Delivered</Text>
-              <Pressable
+              <Text style={styles.modalAmount}>₦{delivery.amount_to_collect}</Text>
+              <Text style={styles.statusText}>Status: {delivery.payment_status}</Text>
+              <TouchableOpacity
                 style={[styles.button, styles.buttonClose]}
                 onPress={() => {
-                  setModalVisible(!modalVisible);
-                  navigation.navigate('Completed');
+                  endTrip();
                 }}>
-                <Text style={styles.textStyle}>View Completed</Text>
-              </Pressable>
+                {delivery.payment_status == 'not paid' ?
+                <Text style={styles.textStyle}>Mark as Paid & Delivered</Text>
+                :
+                <Text style={styles.textStyle}>Mark as Delivered</Text>
+                }
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  setModalVisible(!modalVisible);
+                }}>
+                <Text style={{color: colors.black, marginTop: 20, fontSize: 18}}>Close</Text>
+              </TouchableOpacity>
             </View>
           </View>
         </Modal>
@@ -116,6 +146,7 @@ export default function ViewDelivery({ route, navigation }: ViewDeliveryProps) {
                 </Marker>
               </MapView>
             <View style={styles.productsContainer}>
+              <Text style={styles.name}>Order Date: {delivery.create_date.split(' ')[0]}</Text>
               <Text style={styles.name}>Customer:</Text>
               <Text style={styles.price}>{delivery.customer}</Text>
               <Text style={styles.name}>Address:</Text>
@@ -157,12 +188,18 @@ export default function ViewDelivery({ route, navigation }: ViewDeliveryProps) {
                 keyExtractor={item => item.id}
                 numColumns={3} />
             <View style={styles.margin} />
+            {!completed ? 
             <View style={styles.btnContainer}>
               {started ? 
               <View style={{alignItems:'center'}}>
-                <Text style={styles.price}>Enroute Package Delivery...</Text>
+                <TouchableOpacity onPress={()=>{
+                  Linking.openURL(url);
+                }}>
+                  <Text style={{color: colors.primary, fontSize: 18}}>... Enroute Delivery (Go to Map)</Text>
+                </TouchableOpacity>
                 <AppButton title={"End Trip"} color={colors.red} onPress={() =>{
-                  endTrip();
+                  // endTrip();
+                  setModalVisible(!modalVisible);
                 }} />
               </View> :
               <AppButton title={"Start Trip"} onPress={() =>{
@@ -170,6 +207,9 @@ export default function ViewDelivery({ route, navigation }: ViewDeliveryProps) {
               }} />
               }
             </View>
+            : 
+            <AppButton title={"Order has been Delivered"} onPress={() =>{}} />
+            }
         </View>
       </View>
     </ScrollView>

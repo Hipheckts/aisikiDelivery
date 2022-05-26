@@ -8,7 +8,8 @@ const startTrip = (delivery: string) =>
 
 
     const endTrip = (delivery: string) =>
-        axios.patch(`${url.baseUrl}/delivered/${delivery}`);
+        // axios.patch(`${url.baseUrl}/delivered/${delivery}`);
+        axios.patch(`${url.baseUrl}/delivered`, { "ref":"completed", "order_id":delivery });
 
 
 export default { startTrip, endTrip };

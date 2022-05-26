@@ -52,7 +52,7 @@ export default function Dashboard({ navigation }: DashboardProps) {
   };
 
 
-  React.useEffect(() => {
+  useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
       fetchDeliveries();
       getMetrics();
@@ -207,8 +207,8 @@ export default function Dashboard({ navigation }: DashboardProps) {
               <View style={{ alignItems: 'center' }}>
               </View>
               <View style={styles.row}>
-                <Text style={{ margin: 20, fontWeight: 'bold' }}>New Deliveries</Text>
-                <Pressable onPress={() => navigation.navigate('New')}>
+                <Text style={{ margin: 20, fontWeight: 'bold' }}>Assigned Deliveries</Text>
+                <Pressable onPress={() => navigation.navigate('Assigned')}>
                   <Text style={{ margin: 20, color: colors.grey }}>See All</Text>
                 </Pressable>
               </View>
@@ -226,6 +226,7 @@ export default function Dashboard({ navigation }: DashboardProps) {
                         <View style={styles.vendorDetails}>
                           <Text style={styles.vendorName}>{item.customer}</Text>
                           <Text style={styles.vendorEmail}>{item.email}</Text>
+                          <Text style={styles.vendorDate}>Order Date: {item.create_date.split(' ')[0]}</Text>
                           <Text numberOfLines={1} style={styles.vendorLocation}>
                             <MaterialCommunityIcons
                               color={colors.primary}
@@ -240,7 +241,6 @@ export default function Dashboard({ navigation }: DashboardProps) {
                     </Pressable>
                   )}
                   keyExtractor={item => item.id}
-                  numColumns={2}
                   initialNumToRender={2}
                 />
 

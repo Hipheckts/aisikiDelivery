@@ -33,7 +33,7 @@ export default function Orders({ navigation }: OrderProps) {
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
       fetchDeliveries();
     });
@@ -77,6 +77,7 @@ export default function Orders({ navigation }: OrderProps) {
                       <View style={styles.vendorDetails}>
                         <Text style={styles.vendorName}>{item.customer}</Text>
                         <Text style={styles.vendorEmail}>{item.email}</Text>
+                          <Text style={styles.vendorDate}>Order Date: {item.create_date.split(' ')[0]}</Text>
                         <Text numberOfLines={1} style={styles.vendorLocation}>
                           <MaterialCommunityIcons
                             color={colors.primary}
@@ -92,7 +93,7 @@ export default function Orders({ navigation }: OrderProps) {
 
                   )}
                   keyExtractor={item => item.id}
-                  numColumns={2} />
+                  />
                   :
                   <View style={styles.noOrderContainer}>
                     <Image  

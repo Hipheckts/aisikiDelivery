@@ -69,7 +69,7 @@ export default function AppNavigator() {
             />
             <Tab.Screen
                 component={New}
-                name="New"
+                name="Assigned"
                 options={{
                     // headerShown:false,
                     // title: 'New Deliveries',

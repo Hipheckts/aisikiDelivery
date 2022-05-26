@@ -130,6 +130,11 @@ const styles = StyleSheet.create({
         color: colors.secondary,
         marginTop: 5
     },
+    vendorDate:{
+        fontSize: 14,
+        color: colors.grey,
+        marginTop: 10
+    },
     vendorBranch:{
         fontSize: 14,
         color: colors.grey,

@@ -13,7 +13,7 @@ export const getProfile = async () => {
 
 export const getDeliveries = async (limit: string,offset: string) => {
   try {
-    const response = await axios.get(`${url.baseUrl}/orders?limit=${limit}&offset=${offset}`)
+    const response = await axios.get(`${url.baseUrl}/assigned?limit=${limit}&offset=${offset}`)
     return response.data;
   } catch (e) {
     console.log(e);
@@ -22,7 +22,7 @@ export const getDeliveries = async (limit: string,offset: string) => {
 
 export const getIncompletedDeliveries = async (limit: string,offset: string) => {
   try {
-    const response = await axios.get(`${url.baseUrl}/inccomplete?limit=${limit}&offset=${offset}`)
+    const response = await axios.get(`${url.baseUrl}/in_transist?limit=${limit}&offset=${offset}`)
     return response.data;
   } catch (e) {
     console.log(e);
